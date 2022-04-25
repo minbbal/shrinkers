@@ -5,9 +5,15 @@
         <title>FastCampus Django</title>
     </head>
     <body>
-        {{ user }}<br>
+        {{ welcome_msg }} {{ user }}님! <br>
         {% for i in params %}
         {{ i }}<br>
         {% endfor %}
+        {% if user.is_authenticated %}
+        <p style="padding:0 0 0 120px;"><a href="{% url 'logout' %}">로그아웃</a></p>
+        {% else %}
+        <p><a href="{% url 'register' %}">회원가입</a></p>
+        <p><a href="{% url 'login' %}">로그인</a></p>
+        {% endif %}
     </body>
 </html>
